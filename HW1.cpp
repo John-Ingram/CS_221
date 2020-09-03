@@ -75,7 +75,7 @@ int main(int argc, char const *argv[])
 {
     Clock myClock;
 
-    cout << myClock.naTime();
+    cout <<"\nThe value of myClock is curently a \""<< myClock.naTime() << "\" time\n";
     return 0;
 }
 

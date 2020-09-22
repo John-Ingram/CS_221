@@ -13,6 +13,10 @@ int main() {
   cout << &food << "\n";
 
   // Output the memory address of food with the pointer
-  cout << ptr << "\n";
+  cout << *ptr << "\n";
+
+  *ptr = "friend";
+  cout << *ptr << "\n";
+
   return 0;
 }

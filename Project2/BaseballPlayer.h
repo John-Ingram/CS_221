@@ -1,7 +1,5 @@
 // John Ingram|September 26 2020|CS 221
-// This Program Creates a BaseballPlayer object to handle data about baseball players. The file also contains a small test program.
-// Future versions of this Program will not contain the test program, as it will be moved.
-// This program was compiled using gcc version 9.3.0 (Ubuntu 9.3.0-10ubuntu2) using default compiler flags.
+// This header file defines a BaseballPlayer object to handle data about baseball players.
 
 #include <iostream>
 #include <string>

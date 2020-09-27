@@ -1,4 +1,5 @@
-
+// John Ingram|September 26 2020|CS 221
+// This header file defines and implements an unsorted linked list of BaseballPlayer objects, as well as the Node class needed to make it work.
 #include "BaseballPlayer.h"
 
 class Node

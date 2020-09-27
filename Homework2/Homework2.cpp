@@ -1,5 +1,4 @@
-float* ptr;
-ptr = &x1;
-*ptr = 99.2;
-
-
+Date *myDate;
+myDate = new Date();
+myDate.initialize(10, 10, 2020, "Hello, World!");
+delete myDate;

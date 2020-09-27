@@ -3,28 +3,19 @@
 using namespace std;
 
 int main() {
-  double x, y, z, q;
-	double *p1, *p2;
-	x = 18.2;
-	y = 2.6;
-	z = 99.1;
-	q = 0;
-	
-	p1 = &x;
-	p2 = &y;
-	*p1 = 2.0 * *p2;
-	// What are x & y at this point?
-    cout << "p1 = " << *p1 << endl;
-    cout << "p2 = " << *p2 << endl;
+  int *myArray1 = new int[5];
+  int *myArray2 = new int[5];
+  for (int j = 0; j<5; j++) {
+    myArray1[j] = j;
+  }
 
+  myArray2 = myArray1;
 
-	p1 = &z;
-	p2 = &q;
-	p1 = p2;
-	*p1 = 88.8;
-	// What are z & q at this point?
-    cout << "p1 = " << *p1 << endl;
-    cout << "p2 = " << *p2 << endl;
-
+  for (size_t i = 0; i < 5; i++)
+  {
+    cout << myArray2[i] << endl;
+    cout << myArray1[i] << endl;
+  }
+  
   return 0;
 }

@@ -1,5 +1,7 @@
 // John Ingram|October 19 2020|CS 221
 // This header file defines a BaseballPlayer object to handle data about baseball players.
+#ifndef  __BASEBALLPLAYER_H_
+#define __BASEBALLPLAYER_H_
 
 #include <iostream>
 #include <string>
@@ -28,3 +30,4 @@ public:
     float getOPS();
     bool operator <=(const BaseballPlayer& rightBP);
 };
+#endif

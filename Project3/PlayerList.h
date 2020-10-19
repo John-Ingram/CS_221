@@ -1,5 +1,8 @@
+
 // John Ingram|September 26 2020|CS 221
 // This header file defines an unsorted linked list of BaseballPlayer objects, as well as the Node class needed to make it work.
+#ifndef  __PLAYERLIST_H_
+#define __PLAYERLIST_H_
 #include "BaseballPlayer.h"
 
 class Node
@@ -32,3 +35,4 @@ public:
     BaseballPlayer getNext();
     BaseballPlayer getPrevious();
 };
+#endif

@@ -57,29 +57,60 @@ void PlayerList::add(BaseballPlayer &playerData)
     {
         // iterate through the list
         this->reset();
-        if(current->data <= temp->data)
+        if ((head->data.getLastName() >= temp->data.getLastName())
+        || ((head->data.getLastName() == temp->data.getLastName()) 
+        && (head->data.getFirstName() >= temp->data.getFirstName()))) //temp goes before 1st
         {
             head->previous = temp;
             temp->next = head;
             head = temp;
-            return;
-        }
-        while(current->next != NULL && !(current->data <= temp->data))
-        {
-            current = current->next;
-        }
-        if(current->next == NULL && !(current->data <= temp->data)) //if I'm at the end and haven't found a spot
-        {
-            tail->next = temp;
-            temp->previous = tail;
         } else
         {
-            temp->next = current;
-            temp->previous = current->previous;
-            current->previous->next = temp;
-            current->previous = temp;
-            if(temp->previous == tail) tail == temp;
+            while(this->hasNext())
+            {
+                if ((current->data.getLastName() >= temp->data.getLastName()) //temp goes inbetween 1st and last
+                    || ((current->data.getLastName() == temp->data.getLastName()) 
+                    && (current->data.getFirstName() >= temp->data.getFirstName())))
+                {
+                    temp->next = current;
+                    temp->previous = current->previous;
+                    temp->previous->next = temp;
+                    current->previous = temp;
+                }else
+                {
+                    temp->previous = tail;
+                    tail->next = temp;
+                    tail = temp;
+                }
+                
+            }
         }
+        
+        
+
+        // if(current->data.getLastName() <= temp->data)
+        // {
+        //     head->previous = temp;
+        //     temp->next = head;
+        //     head = temp;
+        //     return;
+        // }
+        // while(current->next != NULL && !(current->data <= temp->data))
+        // {
+        //     current = current->next;
+        // }
+        // if(current->next == NULL && !(current->data <= temp->data)) //if I'm at the end and haven't found a spot
+        // {
+        //     tail->next = temp;
+        //     temp->previous = tail;
+        // } else
+        // {
+        //     temp->next = current;
+        //     temp->previous = current->previous;
+        //     current->previous->next = temp;
+        //     current->previous = temp;
+        //     if(temp->previous == tail) tail == temp;
+        // }
         
         
         // tail->next = temp;  //move this Node to the back of the list

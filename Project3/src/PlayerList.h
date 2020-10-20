@@ -19,7 +19,7 @@ private:
     Node *head, *tail, *current;
     int listSize;
     float battingAverageSum(Node *n);
-    void deleteNodes(Node *n = NULL);
+    void deleteNodes(Node *n);
 
 public:
     PlayerList();

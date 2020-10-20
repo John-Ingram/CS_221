@@ -55,25 +55,32 @@ void PlayerList::add(BaseballPlayer &playerData)
         tail    = temp;
     }else
     {
-        // iterate through the list and check where to put the new node
+        // iterate through the list
         this->reset();
-        do 
+        if(current->data <= temp->data)
         {
-            if (current == NULL) //have to check if i've reached the end of the list first to avoid calling an undefined operator on NULL
-            {
-                temp->previous = tail;
-                tail = temp;
-                break;
-    
-            } else if (current->data <= temp->data)
-            {
-                temp->previous = current->previous;
-                temp->next = current;
-                current->previous = temp;
-                break;
-            }
-            this->getNext();
-        } while(true);
+            head->previous = temp;
+            temp->next = head;
+            head = temp;
+            return;
+        }
+        while(current->next != NULL && !(current->data <= temp->data))
+        {
+            current = current->next;
+        }
+        if(current->next == NULL && !(current->data <= temp->data)) //if I'm at the end and haven't found a spot
+        {
+            tail->next = temp;
+            temp->previous = tail;
+        } else
+        {
+            temp->next = current;
+            temp->previous = current->previous;
+            current->previous->next = temp;
+            current->previous = temp;
+            if(temp->previous == tail) tail == temp;
+        }
+        
         
         // tail->next = temp;  //move this Node to the back of the list
         // tail = tail->next;  //set the tail of the list to the new pointer at the back of the list

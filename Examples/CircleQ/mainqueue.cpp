@@ -1,6 +1,6 @@
 // Main program to test drive the CircQueue
 //-----------------------------------------------------------------------------
-#include "CircQueue.h"
+#include "CircQueue.cpp"
 using namespace std;
 //-----------------------------------------------------------------------------
 void pressreturn(void);
@@ -15,30 +15,18 @@ int main(void)
 	q1.show(cout);
 	pressreturn();
 
-	q1.enqueue('a');
-	q1.enqueue('b');
-	q1.enqueue('c');
+	q1.enqueue(NULL);
+	q1.enqueue(NULL);
+	q1.enqueue(NULL);
+	q1.enqueue('7');
+	q1.enqueue('4');
+	q1.enqueue('4');
+	char v1, v2, v3;
+	q1.dequeue(v1);
+	q1.dequeue(v2);
+	v3 = 'e';
+	q1.enqueue(v3);
 
-	cout << "\nAfter enqueueing a then b then c:\n";
-	q1.show(cout);
-	pressreturn();
-
-	q1.dequeue(temp);  cout << "\nYou dequeueed: " << temp << endl;
-	cout << "After first dequeue:\n";
-	q1.show(cout);
-	pressreturn();
-
-
-	q1.dequeue(temp);  cout << "\nYou dequeueed: " << temp << endl;
-	q1.dequeue(temp);  cout << "\nYou dequeueed: " << temp << endl;
-
-	cout << "After last dequeue:\n";
-	q1.show(cout);
-	pressreturn();
-
-	q1.enqueue('x');
-	q1.enqueue('y');
-	cout << "\nAfter enqueueing x then y:\n";
 	q1.show(cout);
 	pressreturn();
 

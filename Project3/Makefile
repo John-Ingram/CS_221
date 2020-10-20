@@ -34,4 +34,4 @@ clean:
 	rm main
 
 tar:
-	tar -cvf testprogram.tar $(SOURCES) $(HEADERS) Makefile
+	tar -cvf testprogram.gz $(SOURCES) $(HEADERS) Makefile

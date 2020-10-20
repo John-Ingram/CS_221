@@ -1,8 +1,9 @@
-// John Ingram|September 26 2020|CS 221
+// John Ingram|October 19 2020|CS 221
 // This header file implements the Baseball player object.
 
 #include "BaseballPlayer.h"
-
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 
 // Default constructor
@@ -129,8 +130,12 @@ float BaseballPlayer::getOPS()
     return this->getOnBasePercentage() + this->getSluggingPercentage();
 }
 
-bool BaseballPlayer::operator <=(const BaseballPlayer& rightBP)
+// compare BaseballPlayer objects by first and last name
+//use as you would std::string::compare()
+int BaseballPlayer::compare(const BaseballPlayer& rightBP) 
 {
-    return (this->lastname < rightBP.lastname || 
-            (this->lastname == rightBP.lastname && this->firstname < rightBP.firstname));
+    string leftName = this->lastname + this->firstname;
+    string rightName = rightBP.lastname + rightBP.firstname;
+    
+    return leftName.compare(rightName);
 }

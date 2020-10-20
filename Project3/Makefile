@@ -1,69 +1,37 @@
-########################################################################
-####################### Makefile Template ##############################
-########################################################################
+# This is an extremely simple version of a make file
+# for a C++ project that you wish to compile on linux
+#
+# Usage:
+#    make             will build all of the code in your program
+#    make clean       will clean up the compiled code if applicable
+#   
+#######################################################
+# list each file here.  
 
-# Compiler settings - Can be customized.
-CC = g++
-CXXFLAGS = -std=c++11 -Wall -g
+SOURCES = $(wildcard *.cpp)
+HEADERS = $(wildcard *.h)
+
+# I am using the ansi standard C++11. You can change this if your
+# environment uses a different version
+
+CFLAGS = -std=c++11
+
+#the following line should be removed or altered if using external
+#libraries (such as files,etc)
+
 LDFLAGS = 
 
-# Makefile settings - Can be customized.
-APPNAME = Project3
-EXT = .cpp
-SRCDIR = src
-OBJDIR = obj
+# NOTE the leading indentation MUST be a tab character not spaces!
+# In the below commands
 
-############## Do not change anything from here downwards! #############
-SRC = $(wildcard $(SRCDIR)/*$(EXT))
-OBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)/%.o)
-DEP = $(OBJ:$(OBJDIR)/%.o=%.d)
-# UNIX-based OS variables & settings
-RM = rm
-DELOBJ = $(OBJ)
-# Windows OS variables & settings
-DEL = del
-EXE = .exe
-WDELOBJ = $(SRC:$(SRCDIR)/%$(EXT)=$(OBJDIR)\\%.o)
+main: $(SOURCES)
+	g++ $(CFLAGS) $? $(LDFLAGS) -o $@ 
 
-########################################################################
-####################### Targets beginning here #########################
-########################################################################
+debug: $(SOURCES)
+	g++ $(CFLAGS) -g $? $(LDFLAGS) -o $@ 
 
-all: $(APPNAME)
-
-# Builds the app
-$(APPNAME): $(OBJ)
-	$(CC) $(CXXFLAGS) -o $@ $^ $(LDFLAGS)
-
-# Creates the dependecy rules
-%.d: $(SRCDIR)/%$(EXT)
-	@$(CPP) $(CFLAGS) $< -MM -MT $(@:%.d=$(OBJDIR)/%.o) >$@
-
-# Includes all .h files
--include $(DEP)
-
-# Building rule for .o files and its .c/.cpp in combination with all .h
-$(OBJDIR)/%.o: $(SRCDIR)/%$(EXT)
-	$(CC) $(CXXFLAGS) -o $@ -c $<
-
-################### Cleaning rules for Unix-based OS ###################
-# Cleans complete project
-.PHONY: clean
 clean:
-	$(RM) $(DELOBJ) $(DEP) $(APPNAME)
+	rm main
 
-# Cleans only all files with the extension .d
-.PHONY: cleandep
-cleandep:
-	$(RM) $(DEP)
-
-#################### Cleaning rules for Windows OS #####################
-# Cleans complete project
-.PHONY: cleanw
-cleanw:
-	$(DEL) $(WDELOBJ) $(DEP) $(APPNAME)$(EXE)
-
-# Cleans only all files with the extension .d
-.PHONY: cleandepw
-cleandepw:
-	$(DEL) $(DEP)
+tar:
+	tar -cvf testprogram.tar $(SOURCES) $(HEADERS) Makefile

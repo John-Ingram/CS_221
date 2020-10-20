@@ -1,5 +1,5 @@
-// John Ingram|September 26 2020|CS 221
-// This header file implements a sorted doubly linked list of BaseballPlayer objects.
+// John Ingram|October 19 2020|CS 221
+// This file implements a sorted doubly linked list of BaseballPlayer objects.
 #include "BaseballPlayer.h"
 #include "PlayerList.h"
 
@@ -43,10 +43,17 @@ PlayerList::PlayerList()
 //Add a player to the linked list. Note that adding players will "reset" the ADT to the beginning of the list
 void PlayerList::add(BaseballPlayer &playerData)
 {
-    Node *temp      = new Node;
+    Node *temp, *l, *r;
+    bool found;
+
+    temp            = new Node;
     temp->data      = playerData;
     temp->next      = NULL;
     temp->previous  = NULL;
+    l = NULL;
+    r = head;
+    found = false;
+
 
     if (head == NULL) // is this the first Node in the list?
     {
@@ -55,69 +62,38 @@ void PlayerList::add(BaseballPlayer &playerData)
         tail    = temp;
     }else
     {
-        // iterate through the list
-        this->reset();
-        if ((head->data.getLastName() >= temp->data.getLastName())
-        || ((head->data.getLastName() == temp->data.getLastName()) 
-        && (head->data.getFirstName() >= temp->data.getFirstName()))) //temp goes before 1st
+        while(!found && r != NULL)
         {
-            head->previous = temp;
-            temp->next = head;
-            head = temp;
-        } else
-        {
-            while(this->hasNext())
+            if(r->data.compare(temp->data) > 0)
             {
-                if ((current->data.getLastName() >= temp->data.getLastName()) //temp goes inbetween 1st and last
-                    || ((current->data.getLastName() == temp->data.getLastName()) 
-                    && (current->data.getFirstName() >= temp->data.getFirstName())))
-                {
-                    temp->next = current;
-                    temp->previous = current->previous;
-                    temp->previous->next = temp;
-                    current->previous = temp;
-                }else
-                {
-                    temp->previous = tail;
-                    tail->next = temp;
-                    tail = temp;
-                }
-                
-            }
+                found = true;
+            }else
+            {
+                l = r;
+                r = r->next;
+            }   
+        }
+        if(l == NULL) // found at beginning of list
+        {
+            temp->next = head;
+            head->previous = temp;
+            head = temp;
+        }else
+        {
+            l->next = temp;
+            temp->previous = l;
+            temp->next = r;
+            if(r != NULL)
+            {
+            r->previous = temp;
+            }else tail = temp;
         }
         
-        
-
-        // if(current->data.getLastName() <= temp->data)
-        // {
-        //     head->previous = temp;
-        //     temp->next = head;
-        //     head = temp;
-        //     return;
-        // }
-        // while(current->next != NULL && !(current->data <= temp->data))
-        // {
-        //     current = current->next;
-        // }
-        // if(current->next == NULL && !(current->data <= temp->data)) //if I'm at the end and haven't found a spot
-        // {
-        //     tail->next = temp;
-        //     temp->previous = tail;
-        // } else
-        // {
-        //     temp->next = current;
-        //     temp->previous = current->previous;
-        //     current->previous->next = temp;
-        //     current->previous = temp;
-        //     if(temp->previous == tail) tail == temp;
-        // }
-        
-        
-        // tail->next = temp;  //move this Node to the back of the list
-        // tail = tail->next;  //set the tail of the list to the new pointer at the back of the list
     }
+
     listSize++;
 }
+
 
 
 
@@ -152,16 +128,71 @@ bool PlayerList::hasNext()
     return current != NULL;
 }
 
-//check if there is a node before 'current'
+//this is implemented the same as hasNext, but should exist for usability
 bool PlayerList::hasPrevious()
 {
-    return current->previous != NULL;
+    return current != NULL;
 }
 
 // sets 'current' to the begining of the list
 void PlayerList::reset()
 {
     current = head;
+}
+
+// sets 'current' to the end of the list
+void PlayerList::goToEnd()
+{
+    current = tail;
+}
+
+// removes the player from the list if found. otherwise returns 1
+bool PlayerList::deletePlayer(std::string firstName, std::string lastname)
+{
+    this->reset();
+    bool found = false;
+    Node *l,*r;
+    l = NULL;
+    r = head;
+    while (!found && r != NULL)
+    {
+        if (r->data.getFirstName() == firstName && r->data.getLastName() == lastname)
+        {
+            found = true;
+        }else
+        {
+            l = r;
+            r = r->next;
+        }
+    }
+
+    if (found)
+    {
+        if(r == tail)
+        {
+            r->previous->next = NULL;
+            tail = r->previous;
+            delete r;
+            return 0;
+        }else if (r == head)
+        {
+            r->next->previous = NULL;
+            head = r->next;
+            delete r;
+            return 0;
+        }
+        r = r->next;
+        delete l->next;
+        l->next = r;
+        r->previous = l;
+        return 0;
+    }else
+    {
+        return 1;
+    }
+    
+    
+    
 }
 
 // return 'current''s data and advance current by one 
@@ -177,8 +208,8 @@ BaseballPlayer PlayerList::getNext()
 BaseballPlayer PlayerList::getPrevious()
 {
     BaseballPlayer dataCopy;
-    current = current->previous;
     dataCopy = current->data;
+    current = current->previous;
     return dataCopy;
 
 }

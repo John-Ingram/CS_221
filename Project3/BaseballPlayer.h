@@ -28,6 +28,6 @@ public:
     float getOnBasePercentage();
     float getSluggingPercentage();
     float getOPS();
-    bool operator <=(const BaseballPlayer& rightBP);
+    int compare(const BaseballPlayer& rightBP);
 };
 #endif

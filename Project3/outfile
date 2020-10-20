@@ -1,8 +1,30 @@
-BASEBALL TEAM REPORT --- 5 PLAYERS FOUND IN FILE
-OVERALL BATTING AVERAGE is 0.384
+BASEBALL TEAM REPORT --- 6 PLAYERS FOUND IN FILE
+OVERALL BATTING AVERAGE is 0.29
 
       PLAYER NAME :    AVERAGE        OPS
 ---------------------------------------------
-         Cobb, Ty :      0.366      0.934
-     Bench, Jonny :      0.267      0.817
      Aaron, Hanko :      0.305      0.928
+     Bench, Jonny :      0.267      0.817
+         Cobb, Ty :      0.366      0.934
+      Gwynn, Tony :      0.338       0.81
+   Jones, Chipper :      0.303       0.93
+     Smoltz, John :      0.159      0.406
+---------------------------------------------
+BASEBALL TEAM REPORT --- 6 PLAYERS FOUND IN FILE
+OVERALL BATTING AVERAGE is 0.29
+
+      PLAYER NAME :    AVERAGE        OPS
+---------------------------------------------
+     Aaron, Hanko :      0.305      0.928
+     Bench, Jonny :      0.267      0.817
+         Cobb, Ty :      0.366      0.934
+      Gwynn, Tony :      0.338       0.81
+   Jones, Chipper :      0.303       0.93
+     Smoltz, John :      0.159      0.406
+---------------------------------------------
+     Smoltz, John :   0.159283   0.406408
+   Jones, Chipper :   0.303428   0.930254
+      Gwynn, Tony :   0.338178   0.810288
+         Cobb, Ty :   0.366363   0.934304
+     Bench, Jonny :   0.267433   0.816861
+     Aaron, Hanko :   0.304998   0.927872

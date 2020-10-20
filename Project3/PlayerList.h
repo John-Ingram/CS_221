@@ -1,5 +1,5 @@
 
-// John Ingram|September 26 2020|CS 221
+// John Ingram|October 19 2020|CS 221
 // This header file defines an unsorted linked list of BaseballPlayer objects, as well as the Node class needed to make it work.
 #ifndef  __PLAYERLIST_H_
 #define __PLAYERLIST_H_
@@ -20,6 +20,7 @@ private:
     int listSize;
     float battingAverageSum(Node *n);
     void deleteNodes(Node *n);
+    void insertBetween(Node *content, Node *left, Node *right);
 
 public:
     PlayerList();
@@ -31,7 +32,8 @@ public:
     bool hasNext();
     bool hasPrevious();
     void reset();
-    bool deletePlayer();
+    void goToEnd();
+    bool deletePlayer(std::string firstName, std::string lastName);
     BaseballPlayer getNext();
     BaseballPlayer getPrevious();
 };

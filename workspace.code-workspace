@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "Test1"
+		},
+		{
+			"path": "."
+		},
+		{
+			"path": "Test2"
+		},
+		{
+			"path": "Test3"
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"xstring": "cpp",
+			"iostream": "cpp"
+		}
+	}
+}

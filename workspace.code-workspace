@@ -16,7 +16,9 @@
 	"settings": {
 		"files.associations": {
 			"xstring": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"iomanip": "cpp",
+			"iosfwd": "cpp"
 		}
 	}
 }
